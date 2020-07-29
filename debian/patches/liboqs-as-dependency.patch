@@ -1,0 +1,33 @@
+Description: prepare configuration for relying on liboqs package
+Author: Diego Lopez Leon <dieguitoll@gmail.com>
+Origin: upstream
+Last-Update: 2020-07-29
+---
+This patch header follows DEP-3: http://dep.debian.net/deps/dep3/
+Index: openssl-1.1.1g/Configurations/unix-Makefile.tmpl
+===================================================================
+--- openssl-1.1.1g.orig/Configurations/unix-Makefile.tmpl
++++ openssl-1.1.1g/Configurations/unix-Makefile.tmpl
+@@ -346,7 +346,7 @@ CNF_CFLAGS={- join(' ', $target{cflags}
+ CNF_CXXFLAGS={- join(' ', $target{cxxflags} || (),
+                           @{$config{cxxflags}}) -}
+ CNF_LDFLAGS={- join(' ', $target{lflags} || (),
+-                         "-Loqs/lib",
++                         "-Loqs",
+                          @{$config{lflags}}) -}
+ CNF_EX_LIBS={- join(' ', $target{ex_libs} || (),
+                          "-loqs",
+@@ -615,13 +615,6 @@ install_dev: install_runtime_libs
+ 		cp $$i "$(DESTDIR)$(INSTALLTOP)/include/openssl/$$fn"; \
+ 		chmod 644 "$(DESTDIR)$(INSTALLTOP)/include/openssl/$$fn"; \
+ 	done
+-	@$(PERL) $(SRCDIR)/util/mkdir-p.pl "$(DESTDIR)$(INSTALLTOP)/include/oqs"
+-	@set -e; for i in $(SRCDIR)/oqs/include/oqs/*.h; do \
+-		fn=`basename $$i`; \
+-		$(ECHO) "install $$i -> $(DESTDIR)$(INSTALLTOP)/include/oqs/$$fn"; \
+-		cp $$i "$(DESTDIR)$(INSTALLTOP)/include/oqs/$$fn"; \
+-		chmod 644 "$(DESTDIR)$(INSTALLTOP)/include/oqs/$$fn"; \
+-	done
+ 	@$(PERL) $(SRCDIR)/util/mkdir-p.pl "$(DESTDIR)$(libdir)"
+ 	@set -e; for l in $(INSTALL_LIBS); do \
+ 		fn=`basename $$l`; \
