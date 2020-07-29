@@ -1,4 +1,4 @@
-## LibOQS Debian files
+## Open Quantum Safe OpenSSL Debian files
 This repository contains the files for generating Debian distribution packages for the [openssl](https://github.com/open-quantum-safe/openssl) fork that adds quantum-safe key exchange and authentication algorithms.
 The Debian files present in this repository are forked from the official Debian [upstream](https://salsa.debian.org/debian/openssl/). This repository contains the full upstream history of openssl which diverges heavily from our target fork, so we decided keep manual track of the changes.
 
