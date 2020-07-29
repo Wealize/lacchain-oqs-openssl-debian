@@ -22,14 +22,15 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DEBIAN_PRIORITY critical
 ENV DEBCONF_NOWARNINGS yes
 
-# Install the build deps for _this_ package
-RUN mk-build-deps -irt 'apt-get --no-install-recommends -yV' openssl-1.1.1g/debian/control
-
 RUN echo '#!/bin/sh\n\
 set -x\n\
 dpkg -i /debs/*.deb\n\
+apt update\n\
+# Install the build deps for _this_ package\n\
+mk-build-deps -irt "apt-get --no-install-recommends -yV" openssl-1.1.1g/debian/control\n\
 cd /build/openssl-1.1.1g\n\
-debuild -b -uc -us -nc\n'\
+debuild -b -uc -us -nc\n\
+mv ../*.deb /output\n'\
 >> /run.sh
 
 RUN chmod +x /run.sh
