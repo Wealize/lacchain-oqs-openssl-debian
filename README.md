@@ -8,7 +8,7 @@ The Docker image in this repository builds the openssl packages. E.g.
 $ docker build . -t openssl_build
 ```
 This Docker container expects the following volume:
-  - **/debs/**: extra dependencies not existing in official Debian repositories
+  - **/debs/**: directory containing the Debian packages for the `liboqs` and `liboqs-dev` dependencies (not present in official Debian repositories)
   - **/output/**: where the resulting Debian package will be placed
 ```shell
 $ docker run -v `pwd`/debs:/debs -v `pwd`/output:/output openssl_build
