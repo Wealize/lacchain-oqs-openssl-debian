@@ -1,4 +1,4 @@
-openssl (1.1.1g-1+oqs) EXPERIMENTAL; urgency=medium
+openssl (1.1.1g-1+oqs-2020-07) EXPERIMENTAL; urgency=medium
 
   * New OQS fork version
     - Uses the updated NIST Round 2 submissions added to liboqs 0.3.0, as described in the liboqs release notes.
